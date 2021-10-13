@@ -1,3 +1,3 @@
 # get-tweets
-# Ablestate Apprenticship 
-# Create an app that gets tweets from twitter.
+Ablestate Apprenticship 
+Creating an app that gets tweets from twitter.
