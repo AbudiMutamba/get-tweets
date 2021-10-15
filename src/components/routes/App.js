@@ -1,42 +1,59 @@
 //import React, { useState } from 'react'
 import * as React from 'react'
 import axios from 'axios'
-import logo from '../imgs/Get-tweet-logo.png'
+
 
 function App() {
 
-   // const students = [ 12, 15, 16,]
-    //const [a,b] = students
-    
-    const [handle, setHandle] = React.useState('')
-    const [tweets, setTweets] = React.useState('')
-    const handleClick =  async() => {
-        console.log(handle)
+    const [error, setError] = React.useState('')
+    const [todos, setTodos] = React.useState('')
 
-         const response = await axios.get("/end-point", {})
+    React.useEffect(() => {
+        getTodos()
+    }, [])
 
+    const getTodos = async () => {
+        const API_URI = "https://jsonplaceholder.typicode.com/todos";
+        let response = ''
 
-        //Steps
-        /* 
-        [] 1. Send to api
-            []Setting up Axios or fetch API -
-        [] 2. If valid response setTweets
-        */
-    }
-        return (
-            <>
-                <img src={logo} alt="Get Tweets logo" width="150" height="150" />
-                <div>
-                    <input type="text" placeholder="@handle" onChange={(event) => setHandle(event.target.value)} />
-                    <button onClick={handleClick}>Get</button>
+        try {
+            reponse = await axios.get(API_URI);
+            //console.log(response)
+            let {data} = response
+            setTodos(data)
+            //console.log(data)
 
-                </div>
-                <div>
-                    {tweets}
-                </div>
-            </>
-        )
+        } catch (error) {
+
+            setError (<h1>Resource error</h1>)
+            console.log(error)
+            console.log(response)
+            
+        }
     }
 
+    const handleClick = () => {
+        setTodos([])
+        setError('')
+        setTimeout(getTodos,30000)
+    }
 
+    return (
+        <>
+            <h1>Todos</h1>
+            {error}
+            <div>
+                <button onClick={handleClick}>Get Todos</button>
+            </div>
+
+            {todo?.length <= 0 && <div>Loading...</div>}
+            { todos?.length > 0 &&
+                    <ul>
+                          {todo.map (todo => <li key = {todo.id} > {todo.title}</li>)}
+                    </ul>
+            }
+        </>
+    )
+
+}
 export default App
