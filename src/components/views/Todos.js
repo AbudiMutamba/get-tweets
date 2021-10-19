@@ -1,7 +1,7 @@
 // import React, {useState, useEffect} from 'react'
 import * as React from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
+import getData from '../helpers/fetchData'
 
 function Todos() { //Opening a component
 
@@ -9,30 +9,28 @@ function Todos() { //Opening a component
     const [todos, setTodos] = React.useState([])
 
     React.useEffect(() => { //Is invoked at component rendering
-        getTodos()
+        handleTodos()
     }, [])
 
-    const getTodos = async () => {
-        const API_URL = "https://jsonplaceholder.typicode.com/todos";
-        let response = ''
-
-        try {
-            response = await axios.get(API_URL);
-            // console.log(response)
-            let { data } = response
-            setTodos(data)
-            // console.log(data)
-        } catch (error) {
-
-            setError(<h1>Resource error</h1>)
-            console.log(error)
-            console.log(response)
-        }
-    }
-    const handleClick = () => {
+    
+    const handleTodos = async () => {
         setTodos([])
         setError('')
-        setTimeout(getTodos, 5000)
+
+        const todos = await getData()
+
+        if (todos?.error !== undefined) return setError(todos.error)
+
+        // if (todos.hasOwnPropperty(error) && todos.error !== undefined){
+
+        //     return setError(todos.error)
+        // }
+        setTodos(todos)
+
+    }    
+
+    const handleClick = () => {
+        handleTodos()
     }
 
 /*     const myOutPut = <div>
@@ -53,7 +51,8 @@ function Todos() { //Opening a component
             {todos?.length <= 0 && <div>Loading...</div>}
             {todos?.length > 0 &&
                 <ul>
-                    {todos.map(todo => <li key={todo.id}>{todo.title}</li>)}
+                    {/* {todos.map(todo => <li key={todo.id}>{todo.title}{todo.completed === true ? "Completed":"Incompleted" }</li>)} */}
+                    {todos.map(todo => <li key={todo.id}>{todo.completed === true ?  <strike>{todo.title}</strike>:todo.title}</li>)}
                 </ul>
             }
         </>
