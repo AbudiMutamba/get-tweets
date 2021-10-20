@@ -1,9 +1,32 @@
 import React from 'react'
+import {useParams} from 'react-router-dom'
+import getData from '../helpers/fetchData'
 
-export default function Apost() {
+ function Apost() {
+
+    let {id} = useParams()
+    const[post, setPost] = React.useState({})
+
+    const handlePost = async() => {
+        const post = await getData(`posts/${id}`)
+        post.id === id && setPost(post)
+    }
+
+    React.useEffect(() => {
+        handlePost()
+    },[])
+
     return (
         <div>
-            
+            {
+                (!post.id)? <h1>Loading =...</h1>:
+                    <div>
+                        <h1>{post.title}</h1>
+                        <p>{post.body}</p>
+                    </div>
+                
+            }
         </div>
     )
 }
+export default Apost

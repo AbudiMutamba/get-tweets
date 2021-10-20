@@ -28,12 +28,10 @@ function Posts() { //Opening a component
         setPosts(posts)
     }
 
-    const arrange = () => {
-       
-    }
+  
     const handleClick = () => {
         handlePosts()
-        arrange()
+       
     }
 
 /*     const myOutPut = <div>

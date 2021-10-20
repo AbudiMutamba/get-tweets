@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom'
 
 function App() {
-    const [page, setPage] = React.useState(null)
+    //const [page, setPage] = React.useState(null)
 
     return (
         <Router>
