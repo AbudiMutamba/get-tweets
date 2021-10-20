@@ -46,7 +46,12 @@ function Posts() { //Opening a component
 
     return (
         <>
+        
+
+         <div className="container mx-auto">
             <Link to="/todos">Todos</Link>
+            <Link to="/">Home</Link>
+
             <h1>Posts</h1>
             {error}
             <div>
@@ -55,11 +60,14 @@ function Posts() { //Opening a component
 
             {posts?.length <= 0 && <div>Loading...</div>}
             {posts?.length > 0 &&
+                // <ul>
+                //     {posts.map(post => <li key={post.id}><h1>{post.title}</h1> <p>{post.body}</p></li>)}
+                // </ul>
                 <ul>
-                    {posts.map(post => <li key={post.id}><h1>{post.title}</h1> <p>{post.body}</p></li>)}
+                    {posts.map(post =><li key={post.id}> <h1>{post.title}</h1> <p>{post.body}</p></li>)}
                 </ul>
             }
-          
+          </div>
         </>
     )
 }

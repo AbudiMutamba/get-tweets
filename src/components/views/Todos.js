@@ -40,8 +40,11 @@ function Todos() { //Opening a component
     return (myOutPut) */
 
     return (
-        <>
+        <> 
+
+            <div className="container mx-auto">
             <Link to="/posts">Posts</Link>
+            <Link to="/">Home</Link>
             <h1>Todos</h1>
             {error}
             <div>
@@ -55,6 +58,7 @@ function Todos() { //Opening a component
                     {todos.map(todo => <li key={todo.id}>{todo.completed === true ?  <strike>{todo.title}</strike>:todo.title}</li>)}
                 </ul>
             }
+            </div>
         </>
     )
 }
