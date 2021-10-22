@@ -62,7 +62,16 @@ function Posts() { //Opening a component
                 //     {posts.map(post => <li key={post.id}><h1>{post.title}</h1> <p>{post.body}</p></li>)}
                 // </ul>
                 <ul>
-                    {posts.map(post =><li key={post.id}> <h1>{post.title}</h1> <p>{post.body}</p></li>)}
+                     {posts.map(post =>
+
+                     <li key={post.id}>
+                         
+                        <Link key= {post.id} to={`posts/${post.id}`}>
+                            <h1>{post.title}</h1> <p>{post.body}</p>
+                        </Link>
+
+                        </li>
+                        )}
                 </ul>
             }
           </div>

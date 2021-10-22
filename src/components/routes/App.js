@@ -27,7 +27,7 @@ function App() {
                     <Posts />
                 </Route>
 
-                <Route path="/posts/:id">
+                <Route path="/posts/:id" >
                     <Apost />
 
                 </Route>
