@@ -1,0 +1,13 @@
+ li a h1 {
+    color:red;
+    
+}
+h1 :hover{
+    background-color:rgb(116, 93, 93);
+}
+
+button{
+    background-color: rgb(110, 139, 30);
+/* color:red; */
+    border-radius: 5px;
+}

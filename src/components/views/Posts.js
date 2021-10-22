@@ -1,6 +1,7 @@
 // import React, {useState, useEffect} from 'react'
 import * as React from 'react'
 // import axios from 'axios'
+import '../style/posts.css'
 import {Link} from 'react-router-dom'
 import getData from '../helpers/fetchData'
 
@@ -53,7 +54,7 @@ function Posts() { //Opening a component
             <h1>Posts</h1>
             {error}
             <div>
-                <button onClick={handleClick}>Get Posts</button>
+                <button onClick={handleClick} >Get Posts</button>
             </div>
 
             {posts?.length <= 0 && <div>Loading...</div>}
@@ -67,7 +68,8 @@ function Posts() { //Opening a component
                      <li key={post.id}>
                          
                         <Link key= {post.id} to={`posts/${post.id}`}>
-                            <h1>{post.title}</h1> <p>{post.body}</p>
+                            <h1>{post.title}</h1>
+                             <p>{post.body}</p>
                         </Link>
 
                         </li>
